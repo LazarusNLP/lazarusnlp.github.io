@@ -15,8 +15,8 @@ theme:
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: red
-      accent: red
+      primary: black
+      accent: black
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode

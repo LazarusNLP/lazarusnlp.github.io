@@ -45,6 +45,32 @@ Despite the richness and diversity of these regional languages, there has very b
 
 Through this project, we hope to see the same successes occur in other languages of Indonesia. In the long run, we also hope that through these technological advancements, we will be able to prevent these languages from becoming endangered and in turn, spark innovative work around these languages.
 
+## Members
+
+LazarusNLP is driven with love by:
+
+<div style="display: flex;">
+<a href="https://github.com/anantoj">
+    <img src="https://github.com/anantoj.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;margin:0 4px;">
+</a>
+
+<a href="https://github.com/BrandonScottt">
+    <img src="https://github.com/BrandonScottt.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;margin:0 4px;">
+</a>
+
+<a href="https://github.com/DavidSamuell">
+    <img src="https://github.com/DavidSamuell.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;margin:0 4px;">
+</a>
+
+<a href="https://github.com/stevenlimcorn">
+    <img src="https://github.com/stevenlimcorn.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;margin:0 4px;">
+</a>
+
+<a href="https://github.com/w11wo">
+    <img src="https://github.com/w11wo.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;margin:0 4px;">
+</a>
+</div>
+
 [^1]: Wikipedia contributors. (2022, May 20). Languages of Indonesia. In Wikipedia, The Free Encyclopedia. Retrieved 07:55, May 21, 2022, from [https://en.wikipedia.org/w/index.php?title=Languages_of_Indonesia&oldid=1088838885](https://en.wikipedia.org/w/index.php?title=Languages_of_Indonesia&oldid=1088838885).
 [^2]: Abtahian, Maya & Cohn, Abigail. (2014). Can a language with millions of speakers be endangered?. Journal of the Southeast Asian Linguistics Society. 7. 64-75.
 [^3]: Moseley, Christopher, ed. (2010). Atlas of the World’s Languages in Danger. Memory of Peoples (3rd ed.). Paris: UNESCO Publishing. ISBN 978-92-3-104096-2.
