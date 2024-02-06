@@ -34,6 +34,7 @@ nav:
       - Indonesian Accents and Regional Languages: blogs/accents_and_languages.md
   - Projects:
       - Sentence Embeddings: projects/sentence-embeddings.md
+      - Indonesian T5 Language Models: projects/t5-language-models.md
       - Machine Translation: projects/machine-translation.md
 
 plugins:
@@ -62,3 +63,15 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
