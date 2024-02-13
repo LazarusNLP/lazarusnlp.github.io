@@ -23,7 +23,7 @@ While advancements in NLP have benefited major languages like Indonesian, there 
     <img src="https://raw.githubusercontent.com/LazarusNLP/IndoT5/main/assets/logo.png" style="align:center;width:200px;height:200px;border-radius:100%;"/>
 </div>
 
-IndoT5 is a T5-based language model trained specifically for the Indonesian language. With just 8 hours of training on a limited budget, we developed a competitive sequence-to-sequence, encoder-decode model capable of fine-tuning tasks such as summarization, chit-chat, and question-answering. Despite the limited training constraints, our model is competitive when evaluated on the [IndoNLG](https://github.com/IndoNLP/indonlg) <a href="https://github.com/IndoNLP/indonlg">IndoNLG</a> (text generation) benchmark.
+IndoT5 is a T5-based language model trained specifically for the Indonesian language. With just 8 hours of training on a limited budget, we developed a competitive sequence-to-sequence, encoder-decode model capable of fine-tuning tasks such as summarization, chit-chat, and question-answering. Despite the limited training constraints, our model is competitive when evaluated on the [IndoNLG](https://github.com/IndoNLP/indonlg) (text generation) benchmark.
 
 - [:material-github: GitHub Repository](https://github.com/LazarusNLP/IndoT5/)
 - [🤗 HuggingFace Collection](https://huggingface.co/collections/LazarusNLP/indonesian-t5-language-models-65c1b9a0f6342b3eb3d6d450)
