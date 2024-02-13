@@ -5,11 +5,13 @@ docs_dir: docs
 
 theme:
   name: material
+  logo: assets/images/logo_web.png
+  favicon: assets/images/logo_web.png
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: black
+      accent: black
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
@@ -25,11 +27,12 @@ theme:
     - navigation.tabs.sticky
     # - navigation.sections
     - navigation.top
-    # - toc.integrate
+    - toc.integrate
 
 nav:
   - Home: index.md
   - Blogs:
+      - Launching LazarusNLP: blogs/launch.md
       - Bible Alignment: blogs/bible_alignment.md
       - Indonesian Accents and Regional Languages: blogs/accents_and_languages.md
   - Projects:
@@ -53,8 +56,8 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -67,6 +70,8 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.arithmatex:
       generic: true
+  - toc:
+      toc_depth: 3
 
 extra_javascript:
   - javascripts/katex.js

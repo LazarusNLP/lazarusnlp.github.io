@@ -1,3 +1,8 @@
+---
+title: "Bible Alignment"
+description: "One data source often used in low resource languages is the Bible. Simply put, the Bible has been translated to thousands of languages, including languages which may be considered as extremely low resourced. Aside from the diverse set of languages, data is also abundant. Some translations of the Bible only contain New Testament, but that itself already contains ~7900 translation pairs. If it happens to include the Old Testament, then we can get up to ~31000 translation pairs in total."
+---
+
 # Bible Alignment
 
 One data source often used in low resource languages is the Bible. Simply put, the Bible has been translated to thousands of languages, including languages which may be considered as extremely low resourced. Aside from the diverse set of languages, data is also abundant. Some translations of the Bible only contain New Testament, but that itself already contains ~7900 translation pairs. If it happens to include the Old Testament, then we can get up to ~31000 translation pairs in total.

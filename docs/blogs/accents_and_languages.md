@@ -1,3 +1,8 @@
+---
+title: "Indonesian Accents and Regional Languages"
+description: "It is widely known that there are multiple accents of the English language. Accent is the part of dialect concerning local pronunciation and varies from region to region. English dialects differ greatly in their pronunciation of open vowels."
+---
+
 # Indonesian Accents and Regional Languages
 
 It is widely known that there are multiple accents of the English language. Accent is the part of dialect concerning local pronunciation and varies from region to region. English dialects differ greatly in their pronunciation of open vowels.
