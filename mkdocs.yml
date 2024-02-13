@@ -39,6 +39,8 @@ nav:
       - Sentence Embeddings: projects/sentence-embeddings.md
       - Indonesian T5 Language Models: projects/t5-language-models.md
       - Machine Translation: projects/machine-translation.md
+  - GitHub: https://github.com/LazarusNLP
+  - 🤗 Hugging Face: https://huggingface.co/LazarusNLP
 
 plugins:
   - social
