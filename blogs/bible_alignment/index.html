@@ -1,0 +1,1213 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="One data source often used in low resource languages is the Bible. Simply put, the Bible has been translated to thousands of languages, including languages which may be considered as extremely low resourced. Aside from the diverse set of languages, data is also abundant. Some translations of the Bible only contain New Testament, but that itself already contains ~7900 translation pairs. If it happens to include the Old Testament, then we can get up to ~31000 translation pairs in total.">
+      
+      
+      
+        <link rel="canonical" href="https://lazarusnlp.github.io/blogs/bible_alignment/">
+      
+      
+        <link rel="prev" href="../launch/">
+      
+      
+        <link rel="next" href="../accents_and_languages/">
+      
+      
+      <link rel="icon" href="../../assets/images/logo_web.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>Bible Alignment - Lazarus NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Bible Alignment - Lazarus NLP" >
+      
+        <meta  property="og:description"  content="One data source often used in low resource languages is the Bible. Simply put, the Bible has been translated to thousands of languages, including languages which may be considered as extremely low resourced. Aside from the diverse set of languages, data is also abundant. Some translations of the Bible only contain New Testament, but that itself already contains ~7900 translation pairs. If it happens to include the Old Testament, then we can get up to ~31000 translation pairs in total." >
+      
+        <meta  property="og:image"  content="https://lazarusnlp.github.io/assets/images/social/blogs/bible_alignment.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://lazarusnlp.github.io/blogs/bible_alignment/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Bible Alignment - Lazarus NLP" >
+      
+        <meta  name="twitter:description"  content="One data source often used in low resource languages is the Bible. Simply put, the Bible has been translated to thousands of languages, including languages which may be considered as extremely low resourced. Aside from the diverse set of languages, data is also abundant. Some translations of the Bible only contain New Testament, but that itself already contains ~7900 translation pairs. If it happens to include the Old Testament, then we can get up to ~31000 translation pairs in total." >
+      
+        <meta  name="twitter:image"  content="https://lazarusnlp.github.io/assets/images/social/blogs/bible_alignment.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bible-alignment" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Lazarus NLP" class="md-header__button md-logo" aria-label="Lazarus NLP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo_web.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lazarus NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bible Alignment
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lazarusnlp/lazarusnlp.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../launch/" class="md-tabs__link">
+          
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../projects/nusabert/" class="md-tabs__link">
+          
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/LazarusNLP" class="md-tabs__link">
+        
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://huggingface.co/LazarusNLP" class="md-tabs__link">
+        
+  
+    
+  
+  🤗 Hugging Face
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Lazarus NLP" class="md-nav__button md-logo" aria-label="Lazarus NLP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo_web.png" alt="logo">
+
+    </a>
+    Lazarus NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lazarusnlp/lazarusnlp.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blogs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blogs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Launching LazarusNLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Bible Alignment
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Bible Alignment
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variation-1-cascading-verses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variation 1: Cascading Verses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variation-2-combined-verses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variation 2: Combined Verses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variation-3-verse-ranges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variation 3: Verse Ranges
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#closing-thoughts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closing Thoughts
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../accents_and_languages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indonesian Accents and Regional Languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/nusabert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NusaBERT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/sentence-embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sentence Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/t5-language-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indonesian T5 Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../projects/machine-translation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Machine Translation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/LazarusNLP" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://huggingface.co/LazarusNLP" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🤗 Hugging Face
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="bible-alignment">Bible Alignment</h1>
+<p>One data source often used in low resource languages is the Bible. Simply put, the Bible has been translated to thousands of languages, including languages which may be considered as extremely low resourced. Aside from the diverse set of languages, data is also abundant. Some translations of the Bible only contain New Testament, but that itself already contains ~7900 translation pairs. If it happens to include the Old Testament, then we can get up to ~31000 translation pairs in total.</p>
+<p>Languages of Indonesia is no exception, so we immediately saw the opportunity to leverage this.</p>
+<p>In this blog, I would like to document a few challenges that I found while aligning the Bible. To be specific, aligning here is the task of mapping one verse to another. For instance, we map the Indonesian translation of Genesis 1:1 to that of the Javanese translation. On paper, this <em>sounds</em> easy to do. Indeed, the majority of Bible verses align very well. By that I mean Genesis 1:1 in Indonesian really does correspond to the Javanese version.</p>
+<p>But upon closer inspection, there are variations in how the verses are presented.</p>
+<h2 id="variation-1-cascading-verses">Variation 1: Cascading Verses</h2>
+<p>I would call this first type of variation as "cascading" verses. Note that there may be an official term for this, but calling them "cascading" verses is just the most intuitive one for me.</p>
+<p>Take <strong>Exodus 6</strong> in <a href="https://alkitab.mobi/jawa/Kel/6/">Javanese</a>, for example.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exodus 6:1</td>
+<td>(5-24) Nanging pangandikane Pangeran Yehuwah marang Nabi Musa: “Ing samengko sira bakal sumurup, apa kang bakal Suntandukake marang Pringon; anggone bakal nglilani lunga bangsa iki sarana dipeksa ing asta kang rosa, iya marga saka dipeksa dening asta kang rosa dheweke bakal nundhung bangsa iku saka ing nagarane.”</td>
+</tr>
+<tr>
+<td>Exodus 6:2</td>
+<td>(6-1) Sabanjure Gusti Allah ngandika marang Nabi Musa mangkene: “Ingsun iki Yehuwah.</td>
+</tr>
+<tr>
+<td>Exodus 6:3</td>
+<td>(6-2) Ingsun wus ngatingal marang Abraham, Iskak lan Yakub, dadi Allah kang Mahakuwasa, nanging asmaningSun Yehuwah durung Sunsumurupake.</td>
+</tr>
+<tr>
+<td>Exodus 6:4</td>
+<td>(6-3) Karodene Ingsun ora mung damel prasetyan karo leluhurira iku, yen bakal Sunparingi tanah Kanaan, tanah panggonane neneka,</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that in front of each verse, there is an additional verse identifier. It says that the verse in <strong>Exodus 6:1</strong> is, actually <strong>Exodus 5:24</strong>? Because of that "shift", every other verse after that follows and hence "cascades".</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Interestingly, the additional verse identifier is removed in the <a href="https://alkitab.mobi/niv/Kel/6#v1">NIV version</a>.</p>
+</div>
+<p>Note that if this shift is inconsistent across languages, it would certainly cause issues: verses are therefore not parallel and hence not valid translation pairs. Otherwise, we can simply drop these additional verse identifiers.</p>
+<p>What I noticed that for this case (<a href="https://alkitab.mobi/jawa/Kel/6/1/">Exodus 1:6</a>) in particular, the "shift", if identified, is parallel across languages:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Version</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javanese</td>
+<td>Jawa</td>
+<td>(5-24) Nanging pangandikane Pangeran Yehuwah marang Nabi Musa: “Ing samengko sira bakal sumurup, apa kang bakal Suntandukake marang Pringon; anggone bakal nglilani lunga bangsa iki sarana dipeksa ing asta kang rosa, iya marga saka dipeksa dening asta kang rosa dheweke bakal nundhung bangsa iku saka ing nagarane.”</td>
+</tr>
+<tr>
+<td>Indonesian</td>
+<td>Terjemahan Baru (TB)</td>
+<td>(5-24) Tetapi TUHAN berfirman kepada Musa: "Sekarang engkau akan melihat, apa yang akan Kulakukan kepada Firaun; sebab dipaksa oleh tangan yang kuat ia akan membiarkan mereka pergi, ya dipaksa oleh tangan yang kuat ia akan mengusir mereka dari negerinya."</td>
+</tr>
+<tr>
+<td>Sundanese</td>
+<td>Sunda</td>
+<td>PANGERAN ngandika ka Musa, "Tenjokeun ku maneh rek dikumahakeun eta raja teh ku Kami. Saenya-enyana, ku Kami rek dipaksa nepi ka manehna kapaksa ngaluarkeun umat Kami ti nagarana."</td>
+</tr>
+<tr>
+<td>Madurese</td>
+<td>Madura</td>
+<td>(5-24) Dhabuna PANGERAN ka Mosa, "Sateya ba’na bakal nangaleyana epabaramma’a rato jareya bi’ Sengko’. Rato jareya bi’ Sengko’ epaksa’a mabebas Tang bangsa. Saongguna, bi’ Sengko’ rato jareya epaksa’a ngojuk Tang bangsa jareya dhari nagara reya."</td>
+</tr>
+<tr>
+<td>Balinese</td>
+<td>Bali</td>
+<td>Ida Sang Hyang Widi Wasa raris ngandika ring Dane Musa: “Ane jani kita lakar nepukin saluiring ane lakar laksanayang Ulun marep teken sang prabu. Ulun lakar maksa ia, apang ia maang kaulan Ulune makaad. Sasajaane Ulun lakar maksa ia apanga ia nundung kaulan Ulune uli guminnyane.”</td>
+</tr>
+</tbody>
+</table>
+<h2 id="variation-2-combined-verses">Variation 2: Combined Verses</h2>
+<p>I would call the second type of variation as "combined verses". At times we can sort of consider this as a derivation of variation #1. An example of this is <strong>Revelations 13:1</strong>, again, in <a href="https://alkitab.mobi/jawa/Why/13/">Javanese</a>.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revelations 13:1</td>
+<td>(12-18) lan banjur manggon ana ing pinggir sagara. (13-1) Sabanjure aku weruh ana kewan njedhul saka sajroning sagara, sungune sapuluh lan endhase pitu; pucuking sungune ana makuthane sapuluh, lan ing endhase ana cirine jeneng panyenyamah.</td>
+</tr>
+<tr>
+<td>Revelations 13:2</td>
+<td>Kewan kang dakdeleng iku rupane kaya macan tutul, sikile kaya sikil bruwang lan cangkeme kaya cangkem singa. Iku banjur diwenehi kasekten dening naga mau, lan dhampar tuwin panguwasane kang gedhe.</td>
+</tr>
+<tr>
+<td>Revelations 13:3</td>
+<td>Aku nuli ndeleng endhase kang siji iku kaya ana tatune kang mbebayani tumrap uripe, nanging tatune banjur waras. Temah wong sadonya padha kaeraman, banjur ngetut buri kewan iku.</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that <strong>Revelations 13:1</strong> contains <strong>both</strong> <strong>Revelations 12:18</strong> and <strong>13:1</strong>. We might presume that verses will cascade, but in this case, they don't. Now, the questions are:</p>
+<ol>
+<li>Do we assign the sub-verse <strong>12:18</strong> as "<strong>Revelations 12:18</strong>" explicitly? Or do we consider it part of <strong>Revelations 13:1</strong>?</li>
+<li>How do other languages handle this?</li>
+</ol>
+<p>I would opt to answer the second question first, since that'll be important to ultimately decide whether it is parallel, i.e., if is a valid translation pair. With a simple <a href="https://alkitab.mobi/jawa/Why/13/1/">verse comparison</a>, we find:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Version</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javanese</td>
+<td>Jawa</td>
+<td>(12-18) lan banjur manggon ana ing pinggir sagara. (13-1) Sabanjure aku weruh ana kewan njedhul saka sajroning sagara, sungune sapuluh lan endhase pitu; pucuking sungune ana makuthane sapuluh, lan ing endhase ana cirine jeneng panyenyamah.</td>
+</tr>
+<tr>
+<td>Indonesian</td>
+<td>Terjemahan Baru (TB)</td>
+<td>(12-18) Dan ia tinggal berdiri di pantai laut. (13-1) Lalu aku melihat seekor binatang keluar dari dalam laut, bertanduk sepuluh dan berkepala tujuh; di atas tanduk-tanduknya terdapat sepuluh mahkota dan pada kepalanya tertulis nama-nama hujat.</td>
+</tr>
+<tr>
+<td>Sundanese</td>
+<td>Sunda</td>
+<td>(12-18) Gen naga ngajanteng di sisi basisir. (13-1) Ti dinya kaula nenjo aya hiji sato hanjat ti laut, huluna tujuh tandukna sapuluh. Unggal tanduk make makuta, dina unggal huluna aya tulisan hiji ngaran anu ngahina ka Allah.</td>
+</tr>
+<tr>
+<td>Madurese</td>
+<td>Madura</td>
+<td>(12-18) Naga ganeka laju manjeng e paseser. (13-1) Kaula pas nengale badha keban raja kalowar dhari dhalem tase’. Keban ganeka atandhu’ sapolo ban acethak papetto’. E tandhu’na se sapolo ganeka badha jamang settong ebang, ban e saneyap cethagga badha tolesanna, aropa nyama panyeya’an ka Allah.</td>
+</tr>
+<tr>
+<td>Balinese</td>
+<td>Bali</td>
+<td>(12-18) Nagane punika raris nyeleg ring sisin segarane. (13-1) Tumuli tiang ngatonang sato asiki medal saking tengah segarane. Satone punika matanduk adasa, tur tenggekipune pepitu. Sabilang tanduknyane madaging gegelungan asiki. Tur ring sabilang tenggeknyane matulis satunggiling wasta kanistan.</td>
+</tr>
+</tbody>
+</table>
+<p>Luckily, this verse combination is consistent across versions. Thus, whether or not we decide to split the verse into two subverses may not really matter here because parallelism is maintained.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Similarly, those additional verse identifiers are removed in the <a href="https://alkitab.mobi/niv/Why/13#v1">NIV version</a>.</p>
+</div>
+<p>But, if we're opting for a simple solution, again, we can just drop the additional verse identifier. Therefore, we retain the same "drop-verse-identifier" method we opted for variation #1.</p>
+<h2 id="variation-3-verse-ranges">Variation 3: Verse Ranges</h2>
+<p>Now, the last variation is the one that I find to be the most problematic due to its inconsistency across different versions of the Bible. If I'm not mistaken, this variation is known as "verse ranges", where one text may correspond to more than one verse identifiers. I will take <strong>Acts 8:28</strong> as an example:</p>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Version</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Javanese</td>
+<td>Jawa</td>
+<td>Nalika samono panjenengane lagi tindak kondur nitih kreta karo maos kitabe Nabi Yesaya.</td>
+</tr>
+<tr>
+<td>Indonesian</td>
+<td>Terjemahan Baru (TB)</td>
+<td>Sekarang orang itu sedang dalam perjalanan pulang dan duduk dalam keretanya sambil membaca kitab nabi Yesaya.</td>
+</tr>
+<tr>
+<td>Sundanese</td>
+<td>Sunda</td>
+<td>(8:27)</td>
+</tr>
+<tr>
+<td>Madurese</td>
+<td>Madura</td>
+<td>(8:27)</td>
+</tr>
+<tr>
+<td>Balinese</td>
+<td>Bali</td>
+<td>(8:27)</td>
+</tr>
+</tbody>
+</table>
+<p>Notice that in languages like Sundanese, Madurese, and Balinese, <strong>Acts 8:28</strong> is just pointing to <strong>Acts 8:27</strong>. This is because, in those versions, the "text" in <strong>Acts 8:27</strong> actually corresponds to <strong>Acts 8:27-28</strong>, <strong>both verses</strong>. But observe that this is not the case for other languages! Clearly, the Javanese and Indonesian versions do not have that "verse range". Instead, there is an explicit split/distinction between verses 27 and 28.</p>
+<p>See the following table<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> for a comparison of how verse ranges differ across languages:</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>#</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New International Version (NIV)</td>
+<td>Acts 8:27</td>
+<td><ins class="critic">So he started out, and on his way he met an Ethiopian eunuch, an important official in charge of all the treasury of Candace, queen of the Ethiopians. This man had gone to Jerusalem to worship,</ins></td>
+</tr>
+<tr>
+<td></td>
+<td>Acts 8:28</td>
+<td><mark class="critic">and on his way home was sitting in his chariot reading the book of Isaiah the prophet.</mark></td>
+</tr>
+<tr>
+<td>Terjemahan Baru (TB)</td>
+<td>Acts 8:27</td>
+<td><ins class="critic">Lalu berangkatlah Filipus. Adalah seorang Etiopia, seorang sida-sida, pembesar dan kepala perbendaharaan Sri Kandake, ratu negeri Etiopia, yang pergi ke Yerusalem untuk beribadah. </ins></td>
+</tr>
+<tr>
+<td></td>
+<td>Acts 8:28</td>
+<td><mark class="critic">Sekarang orang itu sedang dalam perjalanan pulang dan duduk dalam keretanya sambil membaca kitab nabi Yesaya.</mark></td>
+</tr>
+<tr>
+<td>Sunda</td>
+<td>Acts 8:27</td>
+<td><ins class="critic">(8:27-28) Pilipus geuwat angkat. Di eta jalan aya hiji pajabat luhur urang Etiopia, anu ngurus harta kakayaan Sri Kandasi ratu nagri Etiopia, tas ti Yerusalem ngalakonan ibadah.</ins> <mark class="critic">Eta pajabat tunggang kareta seja mulih ka nagarana, sajajalan ngaos Kitab Nabi Yesaya.</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>Acts 8:28</td>
+<td>(8:27)</td>
+</tr>
+<tr>
+<td>Bali</td>
+<td>Acts 8:27</td>
+<td><ins class="critic">Irika Dane Pilipus makinkin raris mamargi. Duk punika wenten prakangge agung saking jagat Etiopia nuju mamargi mantuk. Prakangge agung punika, dados prakangge buat ngetangang druen Sri Kandake, Sang Raja Putri ring jagat Etiopia. Dane sampun lunga ka kota Yerusalem ngaturang bakti ring Ida Sang Hyang Widi Wasa,</ins> <mark class="critic">tur sane mangkin dane mawali mantuk nglinggihin kreta. Sajeroning pamargin danene punika, dane ngwacen cakepan dane Nabi Yesaya.</mark></td>
+</tr>
+<tr>
+<td></td>
+<td>Acts 8:28</td>
+<td>(8:27)</td>
+</tr>
+</tbody>
+</table>
+<p>You can quickly observe that verse ranges are highly inconsistent. In versions like NIV and TB, the verses are separated. But for those that are combined, the point where they split is not stated, i.e., verses are grouped into "ranges".</p>
+<p>How to best approach this variation remains unclear for the time being. If we were to ignore the verse identifiers just like in variations #1 and #2 above, we would end up producing verses that don't align to each other. One verse may contain "additional texts" that seem to just be "neglected" during the translation process -- where in fact, that's certainly not the case.</p>
+<p>One solution that I could think of is mark verses with ranges as actual verse ranges, instead of treating them as a single verse. The updated version of the table above should describe this better:</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>#</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sunda</td>
+<td><del class="critic">Acts 8:27</del> <ins class="critic">Acts 8:27-28</ins></td>
+<td><ins class="critic">Pilipus geuwat angkat. Di eta jalan aya hiji pajabat luhur urang Etiopia, anu ngurus harta kakayaan Sri Kandasi ratu nagri Etiopia, tas ti Yerusalem ngalakonan ibadah. Eta pajabat tunggang kareta seja mulih ka nagarana, sajajalan ngaos Kitab Nabi Yesaya.</ins></td>
+</tr>
+<tr>
+<td></td>
+<td><del class="critic">Acts 8:28</del></td>
+<td><del class="critic">(8:27) </del></td>
+</tr>
+<tr>
+<td>Bali</td>
+<td><del class="critic">Acts 8:27</del> <ins class="critic">Acts 8:27-28</ins></td>
+<td><ins class="critic">Irika Dane Pilipus makinkin raris mamargi. Duk punika wenten prakangge agung saking jagat Etiopia nuju mamargi mantuk. Prakangge agung punika, dados prakangge buat ngetangang druen Sri Kandake, Sang Raja Putri ring jagat Etiopia. Dane sampun lunga ka kota Yerusalem ngaturang bakti ring Ida Sang Hyang Widi Wasa, tur sane mangkin dane mawali mantuk nglinggihin kreta. Sajeroning pamargin danene punika, dane ngwacen cakepan dane Nabi Yesaya.</ins></td>
+</tr>
+<tr>
+<td></td>
+<td><del class="critic">Acts 8:28</del></td>
+<td><del class="critic">(8:27) </del></td>
+</tr>
+</tbody>
+</table>
+<p>Notice that we can not only drop verse identifiers, which was the solution we chose for the two aforementioned variations, but also avoid aligning verses that do not correspond. We can treat the new verse ranges as the "primary key" of that text.</p>
+<p>Therefore, when we do a table join with other Bible versions that do not have verse ranges, the invalid translation pair will not be produced. On the flipside, when we match Bible versions that have the same verse ranges as primary keys, the two will match and hence produce a new valid translation pair.</p>
+<p>We can apply the same solution for ranges that span more than two verses, it will just be a longer text. This also remains applicable even if there may be sub-splits of verses (e.g. verse 6a, 6b, etc.). Taking <strong>Matthew 1</strong> in <a href="https://alkitab.mobi/sunda/Mat/1/">Sundanese</a> as an example, we can modify:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matthew 1:1</td>
+<td>Ieu daptar karuhun-karuhun Yesus Kristus turunan Daud, ari Daud turunan Ibrahim.</td>
+</tr>
+<tr>
+<td>Matthew 1:2</td>
+<td>(1:2-6a) Ti Ibrahim turun-tumurun nepi ka Raja Daud kieu pareleanana: Ibrahim, Ishak, Yakub, Yuda jeung saderek-saderekna, Peres, Serah (ti ibu Tamar), Hesron, Ram, Aminadab, Nahson, Salmon, Boas (ibuna Boas nya eta Rahab), Obed, Isai, Raja Daud.</td>
+</tr>
+<tr>
+<td>Matthew 1:3</td>
+<td>(1:2)</td>
+</tr>
+<tr>
+<td>Matthew 1:4</td>
+<td>(1:2)</td>
+</tr>
+<tr>
+<td>Matthew 1:5</td>
+<td>(1:2)</td>
+</tr>
+<tr>
+<td>Matthew 1:6</td>
+<td>(1:6b-11) Ti Daud turun-tumurun nepi ka jaman urang Israil diboyong ka Babul kieu pareleanana: Daud ti geureuhana anu asalna garwa Uria, puputra Suleman, ti Suleman turun-tumurun: Rehabam, Abia, Asa, Yosapat, Yehoram, Usia, Yotam, Ahas, Hiskia, Menase, Amon, Yosia, Yoyakin jeung saderek-saderekna.</td>
+</tr>
+<tr>
+<td>Matthew 1:7</td>
+<td>(1:6)</td>
+</tr>
+<tr>
+<td>Matthew 1:8</td>
+<td>(1:6)</td>
+</tr>
+<tr>
+<td>Matthew 1:9</td>
+<td>(1:6)</td>
+</tr>
+<tr>
+<td>Matthew 1:10</td>
+<td>(1:6)</td>
+</tr>
+<tr>
+<td>Matthew 1:11</td>
+<td>(1:6)</td>
+</tr>
+</tbody>
+</table>
+<p>as:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Verse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Matthew 1:1</td>
+<td>Ieu daptar karuhun-karuhun Yesus Kristus turunan Daud, ari Daud turunan Ibrahim.</td>
+</tr>
+<tr>
+<td><ins class="critic">Matthew 1:2-5</ins></td>
+<td>Ti Ibrahim turun-tumurun nepi ka Raja Daud kieu pareleanana: Ibrahim, Ishak, Yakub, Yuda jeung saderek-saderekna, Peres, Serah (ti ibu Tamar), Hesron, Ram, Aminadab, Nahson, Salmon, Boas (ibuna Boas nya eta Rahab), Obed, Isai, Raja Daud.</td>
+</tr>
+<tr>
+<td><ins class="critic">Matthew 1:6-11</ins></td>
+<td>Ti Daud turun-tumurun nepi ka jaman urang Israil diboyong ka Babul kieu pareleanana: Daud ti geureuhana anu asalna garwa Uria, puputra Suleman, ti Suleman turun-tumurun: Rehabam, Abia, Asa, Yosapat, Yehoram, Usia, Yotam, Ahas, Hiskia, Menase, Amon, Yosia, Yoyakin jeung saderek-saderekna.</td>
+</tr>
+</tbody>
+</table>
+<p>Interestingly, the <a href="https://alkitab.mobi/bali/Mat/1/">Balinese version</a> of <strong>Matthew 1:1-11</strong> are <strong>not</strong> ranged (!), unlike the Sundanese version, despite the fact that they do have similar ranges in <strong>Acts 8:27-28</strong> as we have just seen earlier. We could potentially avoid non-matching translation pairs by assigning a verse range as primary key.</p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>If my hypothesis is correct and there remains no other variations to be kept in mind, then we should be able to produce a decently aligned<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> Bible translation dataset, which we then can use to train a neural machine translation (NMT) model.</p>
+<hr />
+<p><em>Written by Wilson Wongso. Last updated 12 December 2022.</em></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Highlights added manually. Highlights are also just estimates, they may not correspond/align perfectly.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>"Decently aligned" because Bible verses may not even be 1-to-1 to begin with! How much this impacts the quality of the translation model could be further investigated.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1975 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="NusaBERT: Teaching IndoBERT to be multilingual and multicultural!">
+      
+      
+      
+        <link rel="canonical" href="https://lazarusnlp.github.io/projects/nusabert/">
+      
+      
+        <link rel="prev" href="../../blogs/accents_and_languages/">
+      
+      
+        <link rel="next" href="../sentence-embeddings/">
+      
+      
+      <link rel="icon" href="../../assets/images/logo_web.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>NusaBERT - Lazarus NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="NusaBERT - Lazarus NLP" >
+      
+        <meta  property="og:description"  content="NusaBERT: Teaching IndoBERT to be multilingual and multicultural!" >
+      
+        <meta  property="og:image"  content="https://lazarusnlp.github.io/assets/images/social/projects/nusabert.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://lazarusnlp.github.io/projects/nusabert/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="NusaBERT - Lazarus NLP" >
+      
+        <meta  name="twitter:description"  content="NusaBERT: Teaching IndoBERT to be multilingual and multicultural!" >
+      
+        <meta  name="twitter:image"  content="https://lazarusnlp.github.io/assets/images/social/projects/nusabert.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pre-trained-models" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Lazarus NLP" class="md-header__button md-logo" aria-label="Lazarus NLP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo_web.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lazarus NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              NusaBERT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lazarusnlp/lazarusnlp.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blogs/launch/" class="md-tabs__link">
+          
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/LazarusNLP" class="md-tabs__link">
+        
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://huggingface.co/LazarusNLP" class="md-tabs__link">
+        
+  
+    
+  
+  🤗 Hugging Face
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Lazarus NLP" class="md-nav__button md-logo" aria-label="Lazarus NLP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo_web.png" alt="logo">
+
+    </a>
+    Lazarus NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lazarusnlp/lazarusnlp.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blogs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blogs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blogs/launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Launching LazarusNLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blogs/bible_alignment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bible Alignment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blogs/accents_and_languages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indonesian Accents and Regional Languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    NusaBERT
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    NusaBERT
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-trained-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-trained Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indonlu-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      IndoNLU (Classification)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indonlu-sequence-labeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      IndoNLU (Sequence Labeling)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nusax" class="md-nav__link">
+    <span class="md-ellipsis">
+      NusaX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nusawrites-nusaparagraph" class="md-nav__link">
+    <span class="md-ellipsis">
+      NusaWrites (NusaParagraph)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nusawrites-nusatranslation" class="md-nav__link">
+    <span class="md-ellipsis">
+      NusaWrites (NusaTranslation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extend-nusabert-tokenizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extend NusaBERT Tokenizer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-train-nusabert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-train NusaBERT
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fine-tune-nusabert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fine-tune NusaBERT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fine-tune NusaBERT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#single-sentence-classification-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single-Sentence Classification Task
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-label-multi-class-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Multi-label Multi-class Classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token Classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pair-token-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pair Token Classification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#credits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Credits
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sentence-embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sentence Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../t5-language-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indonesian T5 Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../machine-translation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Machine Translation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/LazarusNLP" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://huggingface.co/LazarusNLP" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🤗 Hugging Face
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>NusaBERT</h1>
+
+<div class="grid cards">
+<ul>
+<li><a href="https://github.com/LazarusNLP/NusaBERT"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg></span> GitHub Repository</a></li>
+<li><a href="https://huggingface.co/collections/LazarusNLP/nusabert-65dc7abe183c499cc3588b58">🤗 HuggingFace Collection</a></li>
+</ul>
+</div>
+<div align="center">
+
+<a href="https://huggingface.co/collections/LazarusNLP/nusabert-65dc7abe183c499cc3588b58"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Collections-yellow"></img></a>
+
+</div>
+
+<p>This project aims to extend the multilingual and multicultural capability of <a href="https://arxiv.org/abs/2009.05387">IndoBERT</a> (Wilie et al., 2020). We expanded the IndoBERT tokenizer on 12 new regional languages of Indonesia, and continued pre-training on a large-scale corpus consisting of the Indonesian language and 12 regional languages of Indonesia. Our models are highly competitive and robust on multilingual and multicultural benchmarks, such as <a href="https://github.com/IndoNLP/indonlu">IndoNLU</a>, <a href="https://github.com/IndoNLP/nusax">NusaX</a>, and <a href="https://github.com/IndoNLP/nusa-writes">NusaWrites</a>.</p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/LazarusNLP/NusaBERT/main/assets/logo.png" alt="logo" width="400"/>
+</p>
+
+<h2 id="pre-trained-models">Pre-trained Models</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: center;">#params</th>
+<th>Dataset</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-base">LazarusNLP/NusaBERT-base</a></td>
+<td style="text-align: center;">111M</td>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a>, <a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a>, <a href="https://huggingface.co/datasets/uonlp/CulturaX">uonlp/CulturaX</a></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-large">LazarusNLP/NusaBERT-large</a></td>
+<td style="text-align: center;">337M</td>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a>, <a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a>, <a href="https://huggingface.co/datasets/uonlp/CulturaX">uonlp/CulturaX</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="results">Results</h2>
+<p>We evaluate our models on three benchmarks: <a href="https://github.com/IndoNLP/indonlu">IndoNLU</a>, <a href="https://github.com/IndoNLP/nusax">NusaX</a>, and <a href="https://github.com/IndoNLP/nusa-writes">NusaWrites</a>, which measures the model's natural language understanding, multilingual, and multicultural capabilities. The datasets supports a variety of languages of Indonesia. </p>
+<p>The values on the table below denotes the F1 score on the test set.</p>
+<h3 id="indonlu-classification">IndoNLU (Classification)</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: center;">EmoT</th>
+<th style="text-align: center;">SmSA</th>
+<th style="text-align: center;">CASA</th>
+<th style="text-align: center;">HoASA</th>
+<th style="text-align: center;">WReTE</th>
+<th style="text-align: center;">AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mBERT</td>
+<td style="text-align: center;">67.30</td>
+<td style="text-align: center;">84.14</td>
+<td style="text-align: center;">72.23</td>
+<td style="text-align: center;">84.63</td>
+<td style="text-align: center;">84.40</td>
+<td style="text-align: center;">78.54</td>
+</tr>
+<tr>
+<td>XLM-MLM</td>
+<td style="text-align: center;">65.75</td>
+<td style="text-align: center;">86.33</td>
+<td style="text-align: center;">82.17</td>
+<td style="text-align: center;">88.89</td>
+<td style="text-align: center;">64.35</td>
+<td style="text-align: center;">77.50</td>
+</tr>
+<tr>
+<td>XLM-R Base</td>
+<td style="text-align: center;">71.15</td>
+<td style="text-align: center;">91.39</td>
+<td style="text-align: center;">91.71</td>
+<td style="text-align: center;">91.57</td>
+<td style="text-align: center;">79.95</td>
+<td style="text-align: center;">85.15</td>
+</tr>
+<tr>
+<td>XLM-R Large</td>
+<td style="text-align: center;">78.51</td>
+<td style="text-align: center;">92.35</td>
+<td style="text-align: center;">92.40</td>
+<td style="text-align: center;"><strong>94.27</strong></td>
+<td style="text-align: center;">83.82</td>
+<td style="text-align: center;">88.27</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Base p1</td>
+<td style="text-align: center;">73.88</td>
+<td style="text-align: center;">90.85</td>
+<td style="text-align: center;">89.68</td>
+<td style="text-align: center;">88.07</td>
+<td style="text-align: center;">82.17</td>
+<td style="text-align: center;">84.93</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Base p2</td>
+<td style="text-align: center;">72.27</td>
+<td style="text-align: center;">90.29</td>
+<td style="text-align: center;">87.63</td>
+<td style="text-align: center;">87.62</td>
+<td style="text-align: center;">83.62</td>
+<td style="text-align: center;">84.29</td>
+</tr>
+<tr>
+<td>IndoBERT Base p1</td>
+<td style="text-align: center;">75.48</td>
+<td style="text-align: center;">87.73</td>
+<td style="text-align: center;">93.23</td>
+<td style="text-align: center;">92.07</td>
+<td style="text-align: center;">78.55</td>
+<td style="text-align: center;">85.41</td>
+</tr>
+<tr>
+<td>IndoBERT Base p2</td>
+<td style="text-align: center;">76.28</td>
+<td style="text-align: center;">87.66</td>
+<td style="text-align: center;">93.24</td>
+<td style="text-align: center;">92.70</td>
+<td style="text-align: center;">78.68</td>
+<td style="text-align: center;">85.71</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Large p1</td>
+<td style="text-align: center;">75.19</td>
+<td style="text-align: center;">88.66</td>
+<td style="text-align: center;">90.99</td>
+<td style="text-align: center;">89.53</td>
+<td style="text-align: center;">78.98</td>
+<td style="text-align: center;">84.67</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Large p2</td>
+<td style="text-align: center;">70.80</td>
+<td style="text-align: center;">88.61</td>
+<td style="text-align: center;">88.13</td>
+<td style="text-align: center;">91.05</td>
+<td style="text-align: center;"><strong>85.41</strong></td>
+<td style="text-align: center;">84.80</td>
+</tr>
+<tr>
+<td>IndoBERT Large p1</td>
+<td style="text-align: center;">77.08</td>
+<td style="text-align: center;"><strong>92.72</strong></td>
+<td style="text-align: center;"><strong>95.69</strong></td>
+<td style="text-align: center;">93.75</td>
+<td style="text-align: center;">82.91</td>
+<td style="text-align: center;"><strong>88.43</strong></td>
+</tr>
+<tr>
+<td>IndoBERT Large p2</td>
+<td style="text-align: center;"><strong>79.47</strong></td>
+<td style="text-align: center;">92.03</td>
+<td style="text-align: center;">94.94</td>
+<td style="text-align: center;">93.38</td>
+<td style="text-align: center;">80.30</td>
+<td style="text-align: center;">88.02</td>
+</tr>
+<tr>
+<td><em>Our work</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-base">LazarusNLP/NusaBERT-base</a></td>
+<td style="text-align: center;">76.10</td>
+<td style="text-align: center;">87.46</td>
+<td style="text-align: center;">91.26</td>
+<td style="text-align: center;">89.80</td>
+<td style="text-align: center;">76.77</td>
+<td style="text-align: center;">84.28</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-large">LazarusNLP/NusaBERT-large</a></td>
+<td style="text-align: center;">78.90</td>
+<td style="text-align: center;">87.36</td>
+<td style="text-align: center;">92.13</td>
+<td style="text-align: center;">93.18</td>
+<td style="text-align: center;">82.64</td>
+<td style="text-align: center;">86.84</td>
+</tr>
+</tbody>
+</table>
+<h3 id="indonlu-sequence-labeling">IndoNLU (Sequence Labeling)</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: center;">POSP</th>
+<th style="text-align: center;">BaPOS</th>
+<th style="text-align: center;">TermA</th>
+<th style="text-align: center;">KEPS</th>
+<th style="text-align: center;">NERGrit</th>
+<th style="text-align: center;">NERP</th>
+<th style="text-align: center;">FacQA</th>
+<th style="text-align: center;">AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mBERT</td>
+<td style="text-align: center;">91.85</td>
+<td style="text-align: center;">83.25</td>
+<td style="text-align: center;">89.51</td>
+<td style="text-align: center;">64.31</td>
+<td style="text-align: center;">75.02</td>
+<td style="text-align: center;">69.27</td>
+<td style="text-align: center;">61.29</td>
+<td style="text-align: center;">76.36</td>
+</tr>
+<tr>
+<td>XLM-MLM</td>
+<td style="text-align: center;">95.87</td>
+<td style="text-align: center;">88.40</td>
+<td style="text-align: center;">90.55</td>
+<td style="text-align: center;">65.35</td>
+<td style="text-align: center;">74.75</td>
+<td style="text-align: center;">75.06</td>
+<td style="text-align: center;">62.15</td>
+<td style="text-align: center;">78.88</td>
+</tr>
+<tr>
+<td>XLM-R Base</td>
+<td style="text-align: center;">95.16</td>
+<td style="text-align: center;">84.64</td>
+<td style="text-align: center;">90.99</td>
+<td style="text-align: center;">68.82</td>
+<td style="text-align: center;">79.09</td>
+<td style="text-align: center;">75.03</td>
+<td style="text-align: center;">64.58</td>
+<td style="text-align: center;">79.76</td>
+</tr>
+<tr>
+<td>XLM-R Large</td>
+<td style="text-align: center;">92.73</td>
+<td style="text-align: center;">87.03</td>
+<td style="text-align: center;">91.45</td>
+<td style="text-align: center;">70.88</td>
+<td style="text-align: center;">78.26</td>
+<td style="text-align: center;">78.52</td>
+<td style="text-align: center;"><strong>74.61</strong></td>
+<td style="text-align: center;">81.92</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Base p1</td>
+<td style="text-align: center;">91.40</td>
+<td style="text-align: center;">75.10</td>
+<td style="text-align: center;">89.29</td>
+<td style="text-align: center;">69.02</td>
+<td style="text-align: center;">66.62</td>
+<td style="text-align: center;">46.58</td>
+<td style="text-align: center;">54.99</td>
+<td style="text-align: center;">70.43</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Base p2</td>
+<td style="text-align: center;">90.05</td>
+<td style="text-align: center;">77.59</td>
+<td style="text-align: center;">89.19</td>
+<td style="text-align: center;">69.13</td>
+<td style="text-align: center;">66.71</td>
+<td style="text-align: center;">50.52</td>
+<td style="text-align: center;">49.18</td>
+<td style="text-align: center;">70.34</td>
+</tr>
+<tr>
+<td>IndoBERT Base p1</td>
+<td style="text-align: center;">95.26</td>
+<td style="text-align: center;">87.09</td>
+<td style="text-align: center;">90.73</td>
+<td style="text-align: center;">70.36</td>
+<td style="text-align: center;">69.87</td>
+<td style="text-align: center;">75.52</td>
+<td style="text-align: center;">53.45</td>
+<td style="text-align: center;">77.47</td>
+</tr>
+<tr>
+<td>IndoBERT Base p2</td>
+<td style="text-align: center;">95.23</td>
+<td style="text-align: center;">85.72</td>
+<td style="text-align: center;">91.13</td>
+<td style="text-align: center;">69.17</td>
+<td style="text-align: center;">67.42</td>
+<td style="text-align: center;">75.68</td>
+<td style="text-align: center;">57.06</td>
+<td style="text-align: center;">77.34</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Large p1</td>
+<td style="text-align: center;">91.56</td>
+<td style="text-align: center;">83.74</td>
+<td style="text-align: center;">90.23</td>
+<td style="text-align: center;">67.89</td>
+<td style="text-align: center;">71.19</td>
+<td style="text-align: center;">74.37</td>
+<td style="text-align: center;">65.50</td>
+<td style="text-align: center;">77.78</td>
+</tr>
+<tr>
+<td>IndoBERT Lite Large p2</td>
+<td style="text-align: center;">94.53</td>
+<td style="text-align: center;">84.91</td>
+<td style="text-align: center;">90.72</td>
+<td style="text-align: center;">68.55</td>
+<td style="text-align: center;">73.07</td>
+<td style="text-align: center;">74.89</td>
+<td style="text-align: center;">62.87</td>
+<td style="text-align: center;">78.51</td>
+</tr>
+<tr>
+<td>IndoBERT Large p1</td>
+<td style="text-align: center;">95.71</td>
+<td style="text-align: center;">90.35</td>
+<td style="text-align: center;">91.87</td>
+<td style="text-align: center;">71.18</td>
+<td style="text-align: center;">77.60</td>
+<td style="text-align: center;">79.25</td>
+<td style="text-align: center;">62.48</td>
+<td style="text-align: center;">81.21</td>
+</tr>
+<tr>
+<td>IndoBERT Large p2</td>
+<td style="text-align: center;">95.34</td>
+<td style="text-align: center;">87.36</td>
+<td style="text-align: center;"><strong>92.14</strong></td>
+<td style="text-align: center;">71.27</td>
+<td style="text-align: center;">76.63</td>
+<td style="text-align: center;">77.99</td>
+<td style="text-align: center;">68.09</td>
+<td style="text-align: center;">81.26</td>
+</tr>
+<tr>
+<td><em>Our work</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-base">LazarusNLP/NusaBERT-base</a></td>
+<td style="text-align: center;">95.77</td>
+<td style="text-align: center;">96.02</td>
+<td style="text-align: center;">90.54</td>
+<td style="text-align: center;">66.67</td>
+<td style="text-align: center;">72.93</td>
+<td style="text-align: center;">82.29</td>
+<td style="text-align: center;">54.81</td>
+<td style="text-align: center;">79.86</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-large">LazarusNLP/NusaBERT-large</a></td>
+<td style="text-align: center;"><strong>96.89</strong></td>
+<td style="text-align: center;"><strong>96.76</strong></td>
+<td style="text-align: center;">91.73</td>
+<td style="text-align: center;"><strong>71.53</strong></td>
+<td style="text-align: center;"><strong>79.86</strong></td>
+<td style="text-align: center;"><strong>85.12</strong></td>
+<td style="text-align: center;">66.77</td>
+<td style="text-align: center;"><strong>84.09</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="nusax">NusaX</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th style="text-align: center;"><code>ace</code></th>
+<th style="text-align: center;"><code>ban</code></th>
+<th style="text-align: center;"><code>bbc</code></th>
+<th style="text-align: center;"><code>bjn</code></th>
+<th style="text-align: center;"><code>bug</code></th>
+<th style="text-align: center;"><code>eng</code></th>
+<th style="text-align: center;"><code>ind</code></th>
+<th style="text-align: center;"><code>jav</code></th>
+<th style="text-align: center;"><code>mad</code></th>
+<th style="text-align: center;"><code>min</code></th>
+<th style="text-align: center;"><code>nij</code></th>
+<th style="text-align: center;"><code>sun</code></th>
+<th style="text-align: center;">AVG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naive Bayes</td>
+<td style="text-align: center;">72.5</td>
+<td style="text-align: center;">72.6</td>
+<td style="text-align: center;">73.0</td>
+<td style="text-align: center;">71.9</td>
+<td style="text-align: center;">73.7</td>
+<td style="text-align: center;">76.5</td>
+<td style="text-align: center;">73.1</td>
+<td style="text-align: center;">69.4</td>
+<td style="text-align: center;">66.8</td>
+<td style="text-align: center;">73.2</td>
+<td style="text-align: center;">68.8</td>
+<td style="text-align: center;">71.9</td>
+<td style="text-align: center;">72.0</td>
+</tr>
+<tr>
+<td>SVM</td>
+<td style="text-align: center;">75.7</td>
+<td style="text-align: center;">75.3</td>
+<td style="text-align: center;"><strong>76.7</strong></td>
+<td style="text-align: center;">74.8</td>
+<td style="text-align: center;">77.2</td>
+<td style="text-align: center;">75.0</td>
+<td style="text-align: center;">78.7</td>
+<td style="text-align: center;">71.3</td>
+<td style="text-align: center;">73.8</td>
+<td style="text-align: center;">76.7</td>
+<td style="text-align: center;">75.1</td>
+<td style="text-align: center;">74.3</td>
+<td style="text-align: center;">75.4</td>
+</tr>
+<tr>
+<td>Logistic Regression</td>
+<td style="text-align: center;">77.4</td>
+<td style="text-align: center;">76.3</td>
+<td style="text-align: center;">76.3</td>
+<td style="text-align: center;">75.0</td>
+<td style="text-align: center;"><strong>77.2</strong></td>
+<td style="text-align: center;">75.9</td>
+<td style="text-align: center;">74.7</td>
+<td style="text-align: center;">73.7</td>
+<td style="text-align: center;">74.7</td>
+<td style="text-align: center;">74.8</td>
+<td style="text-align: center;">73.4</td>
+<td style="text-align: center;">75.8</td>
+<td style="text-align: center;">75.4</td>
+</tr>
+<tr>
+<td>IndoNLU IndoBERT Base</td>
+<td style="text-align: center;">75.4</td>
+<td style="text-align: center;">74.8</td>
+<td style="text-align: center;">70.0</td>
+<td style="text-align: center;">83.1</td>
+<td style="text-align: center;">73.9</td>
+<td style="text-align: center;">79.5</td>
+<td style="text-align: center;">90.0</td>
+<td style="text-align: center;">81.7</td>
+<td style="text-align: center;">77.8</td>
+<td style="text-align: center;">82.5</td>
+<td style="text-align: center;">75.8</td>
+<td style="text-align: center;">77.5</td>
+<td style="text-align: center;">78.5</td>
+</tr>
+<tr>
+<td>IndoNLU IndoBERT Large</td>
+<td style="text-align: center;">76.3</td>
+<td style="text-align: center;">79.5</td>
+<td style="text-align: center;">74.0</td>
+<td style="text-align: center;">83.2</td>
+<td style="text-align: center;">70.9</td>
+<td style="text-align: center;">87.3</td>
+<td style="text-align: center;">90.2</td>
+<td style="text-align: center;">85.6</td>
+<td style="text-align: center;">77.2</td>
+<td style="text-align: center;">82.9</td>
+<td style="text-align: center;">75.8</td>
+<td style="text-align: center;">77.2</td>
+<td style="text-align: center;">80.0</td>
+</tr>
+<tr>
+<td>IndoLEM IndoBERT Base</td>
+<td style="text-align: center;">72.6</td>
+<td style="text-align: center;">65.4</td>
+<td style="text-align: center;">61.7</td>
+<td style="text-align: center;">71.2</td>
+<td style="text-align: center;">66.9</td>
+<td style="text-align: center;">71.2</td>
+<td style="text-align: center;">87.6</td>
+<td style="text-align: center;">74.5</td>
+<td style="text-align: center;">71.8</td>
+<td style="text-align: center;">68.9</td>
+<td style="text-align: center;">69.3</td>
+<td style="text-align: center;">71.7</td>
+<td style="text-align: center;">71.1</td>
+</tr>
+<tr>
+<td>mBERT Base</td>
+<td style="text-align: center;">72.2</td>
+<td style="text-align: center;">70.6</td>
+<td style="text-align: center;">69.3</td>
+<td style="text-align: center;">70.4</td>
+<td style="text-align: center;">68.0</td>
+<td style="text-align: center;">84.1</td>
+<td style="text-align: center;">78.0</td>
+<td style="text-align: center;">73.2</td>
+<td style="text-align: center;">67.4</td>
+<td style="text-align: center;">74.9</td>
+<td style="text-align: center;">70.2</td>
+<td style="text-align: center;">74.5</td>
+<td style="text-align: center;">72.7</td>
+</tr>
+<tr>
+<td>XLM-R Base</td>
+<td style="text-align: center;">73.9</td>
+<td style="text-align: center;">72.8</td>
+<td style="text-align: center;">62.3</td>
+<td style="text-align: center;">76.6</td>
+<td style="text-align: center;">66.6</td>
+<td style="text-align: center;">90.8</td>
+<td style="text-align: center;">88.4</td>
+<td style="text-align: center;">78.9</td>
+<td style="text-align: center;">69.7</td>
+<td style="text-align: center;">79.1</td>
+<td style="text-align: center;">75.0</td>
+<td style="text-align: center;">80.1</td>
+<td style="text-align: center;">76.2</td>
+</tr>
+<tr>
+<td>XLM-R Large</td>
+<td style="text-align: center;">75.9</td>
+<td style="text-align: center;">77.1</td>
+<td style="text-align: center;">65.5</td>
+<td style="text-align: center;">86.3</td>
+<td style="text-align: center;">70.0</td>
+<td style="text-align: center;"><strong>92.6</strong></td>
+<td style="text-align: center;">91.6</td>
+<td style="text-align: center;">84.2</td>
+<td style="text-align: center;">74.9</td>
+<td style="text-align: center;">83.1</td>
+<td style="text-align: center;">73.3</td>
+<td style="text-align: center;"><strong>86.0</strong></td>
+<td style="text-align: center;">80.0</td>
+</tr>
+<tr>
+<td><em>Our work</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-base">LazarusNLP/NusaBERT-base</a></td>
+<td style="text-align: center;">76.51</td>
+<td style="text-align: center;">78.67</td>
+<td style="text-align: center;">74.02</td>
+<td style="text-align: center;">82.38</td>
+<td style="text-align: center;">71.64</td>
+<td style="text-align: center;">84.09</td>
+<td style="text-align: center;">89.74</td>
+<td style="text-align: center;">84.09</td>
+<td style="text-align: center;">75.62</td>
+<td style="text-align: center;">80.77</td>
+<td style="text-align: center;">74.93</td>
+<td style="text-align: center;">85.21</td>
+<td style="text-align: center;">79.81</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-large">LazarusNLP/NusaBERT-large</a></td>
+<td style="text-align: center;"><strong>81.8</strong></td>
+<td style="text-align: center;"><strong>82.83</strong></td>
+<td style="text-align: center;">74.71</td>
+<td style="text-align: center;"><strong>86.51</strong></td>
+<td style="text-align: center;">73.36</td>
+<td style="text-align: center;">84.63</td>
+<td style="text-align: center;"><strong>93.33</strong></td>
+<td style="text-align: center;"><strong>87.20</strong></td>
+<td style="text-align: center;"><strong>82.50</strong></td>
+<td style="text-align: center;"><strong>83.54</strong></td>
+<td style="text-align: center;"><strong>77.72</strong></td>
+<td style="text-align: center;">82.74</td>
+<td style="text-align: center;"><strong>82.57</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="nusawrites-nusaparagraph">NusaWrites (NusaParagraph)</h3>
+<table>
+<thead>
+<tr>
+<th>Models</th>
+<th style="text-align: center;">Emotion</th>
+<th style="text-align: center;">Rhetorical Mode</th>
+<th style="text-align: center;">Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naive Bayes</td>
+<td style="text-align: center;">75.51</td>
+<td style="text-align: center;">37.73</td>
+<td style="text-align: center;">85.06</td>
+</tr>
+<tr>
+<td>SVM</td>
+<td style="text-align: center;">76.36</td>
+<td style="text-align: center;">45.44</td>
+<td style="text-align: center;">85.86</td>
+</tr>
+<tr>
+<td>Logistic Regression</td>
+<td style="text-align: center;"><strong>78.23</strong></td>
+<td style="text-align: center;">45.21</td>
+<td style="text-align: center;"><strong>87.67</strong></td>
+</tr>
+<tr>
+<td>IndoNLU IndoBERT Base</td>
+<td style="text-align: center;">67.12</td>
+<td style="text-align: center;">47.92</td>
+<td style="text-align: center;">85.87</td>
+</tr>
+<tr>
+<td>IndoNLU IndoBERT Large</td>
+<td style="text-align: center;">62.65</td>
+<td style="text-align: center;">31.75</td>
+<td style="text-align: center;">85.41</td>
+</tr>
+<tr>
+<td>IndoLEM IndoBERT Base</td>
+<td style="text-align: center;">66.94</td>
+<td style="text-align: center;">51.93</td>
+<td style="text-align: center;">84.87</td>
+</tr>
+<tr>
+<td>mBERT</td>
+<td style="text-align: center;">63.15</td>
+<td style="text-align: center;">50.01</td>
+<td style="text-align: center;">73.82</td>
+</tr>
+<tr>
+<td>XLM-R Base</td>
+<td style="text-align: center;">59.15</td>
+<td style="text-align: center;">49.17</td>
+<td style="text-align: center;">71.68</td>
+</tr>
+<tr>
+<td>XLM-R Large</td>
+<td style="text-align: center;">67.42</td>
+<td style="text-align: center;">51.57</td>
+<td style="text-align: center;">83.05</td>
+</tr>
+<tr>
+<td><em>Our work</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-base">LazarusNLP/NusaBERT-base</a></td>
+<td style="text-align: center;">67.18</td>
+<td style="text-align: center;">51.34</td>
+<td style="text-align: center;">84.17</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-large">LazarusNLP/NusaBERT-large</a></td>
+<td style="text-align: center;">71.82</td>
+<td style="text-align: center;"><strong>53.06</strong></td>
+<td style="text-align: center;">85.89</td>
+</tr>
+</tbody>
+</table>
+<h3 id="nusawrites-nusatranslation">NusaWrites (NusaTranslation)</h3>
+<table>
+<thead>
+<tr>
+<th>Models</th>
+<th style="text-align: center;">Emotion</th>
+<th style="text-align: center;">Sentiment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Naive Bayes</td>
+<td style="text-align: center;">52.70</td>
+<td style="text-align: center;">74.89</td>
+</tr>
+<tr>
+<td>SVM</td>
+<td style="text-align: center;">55.08</td>
+<td style="text-align: center;">76.04</td>
+</tr>
+<tr>
+<td>Logistic Regression</td>
+<td style="text-align: center;">56.18</td>
+<td style="text-align: center;">74.89</td>
+</tr>
+<tr>
+<td>IndoNLU IndoBERT Base</td>
+<td style="text-align: center;">54.50</td>
+<td style="text-align: center;">75.24</td>
+</tr>
+<tr>
+<td>IndoNLU IndoBERT Large</td>
+<td style="text-align: center;">57.80</td>
+<td style="text-align: center;">77.40</td>
+</tr>
+<tr>
+<td>IndoLEM IndoBERT Base</td>
+<td style="text-align: center;">52.59</td>
+<td style="text-align: center;">69.08</td>
+</tr>
+<tr>
+<td>mBERT</td>
+<td style="text-align: center;">44.13</td>
+<td style="text-align: center;">68.72</td>
+</tr>
+<tr>
+<td>XLM-R Base</td>
+<td style="text-align: center;">47.02</td>
+<td style="text-align: center;">68.62</td>
+</tr>
+<tr>
+<td>XLM-R Large</td>
+<td style="text-align: center;">54.84</td>
+<td style="text-align: center;">79.06</td>
+</tr>
+<tr>
+<td><em>Our work</em></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-base">LazarusNLP/NusaBERT-base</a></td>
+<td style="text-align: center;">56.54</td>
+<td style="text-align: center;">77.07</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/LazarusNLP/NusaBERT-large">LazarusNLP/NusaBERT-large</a></td>
+<td style="text-align: center;"><strong>61.40</strong></td>
+<td style="text-align: center;"><strong>79.54</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="installation">Installation</h2>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/LazarusNLP/NusaBERT.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>NusaBERT
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span></code></pre></div>
+<h2 id="dataset">Dataset</h2>
+<p>For pre-training we leverage three existing open-source corpora that includes the Indonesian language and regional languages of Indonesia. A summary of the datasets are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Language</th>
+<th style="text-align: center;">#documents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://huggingface.co/datasets/uonlp/CulturaX">uonlp/CulturaX</a></td>
+<td>Indonesian (<code>ind</code>)</td>
+<td style="text-align: center;">23,251,368</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/uonlp/CulturaX">uonlp/CulturaX</a></td>
+<td>Javanese (<code>jav</code>)</td>
+<td style="text-align: center;">2,058</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/uonlp/CulturaX">uonlp/CulturaX</a></td>
+<td>Malay (<code>msa</code>)</td>
+<td style="text-align: center;">238,000</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/uonlp/CulturaX">uonlp/CulturaX</a></td>
+<td>Sundanese (<code>sun</code>)</td>
+<td style="text-align: center;">1,554</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Acehnese (<code>ace</code>)</td>
+<td style="text-align: center;">12,904</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Balinese (<code>ban</code>)</td>
+<td style="text-align: center;">19,837</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Banjarese (<code>bjn</code>)</td>
+<td style="text-align: center;">10,437</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Buginese (<code>bug</code>)</td>
+<td style="text-align: center;">9,793</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Gorontalo (<code>gor</code>)</td>
+<td style="text-align: center;">14,514</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Indonesian (<code>ind</code>)</td>
+<td style="text-align: center;">654,287</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Javanese (<code>jav</code>)</td>
+<td style="text-align: center;">72,667</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Banyumasan (<code>map_bms</code>)</td>
+<td style="text-align: center;">11,832</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Minangkabau (<code>min</code>)</td>
+<td style="text-align: center;">225,858</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Malay (<code>msa</code>)</td>
+<td style="text-align: center;">346,186</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Nias (<code>nia</code>)</td>
+<td style="text-align: center;">1,650</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Sundanese (<code>sun</code>)</td>
+<td style="text-align: center;">61,494</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/sabilmakbar/indo_wiki">sabilmakbar/indo_wiki</a></td>
+<td>Tetum (<code>tet</code>)</td>
+<td style="text-align: center;">1,465</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a></td>
+<td>Acehnese (<code>ace</code>)</td>
+<td style="text-align: center;">792,594</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a></td>
+<td>Balinese (<code>ban</code>)</td>
+<td style="text-align: center;">244,545</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a></td>
+<td>Banjarese (<code>bjn</code>)</td>
+<td style="text-align: center;">296,314</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a></td>
+<td>Javanese (<code>jav</code>)</td>
+<td style="text-align: center;">1,155,142</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a></td>
+<td>Minangkabau (<code>min</code>)</td>
+<td style="text-align: center;">113,323</td>
+</tr>
+<tr>
+<td><a href="https://huggingface.co/datasets/acul3/KoPI-NLLB">acul3/KoPI-NLLB</a></td>
+<td>Sundanese (<code>sun</code>)</td>
+<td style="text-align: center;">894,626</td>
+</tr>
+</tbody>
+</table>
+<h2 id="extend-nusabert-tokenizer">Extend NusaBERT Tokenizer</h2>
+<p>We first need to train a WordPiece tokenizer on our pre-pretraining corpus, whose vocab size we limit up to 10,000. We then add non-overlapping tokens from the new tokenizer to the original IndoBERT tokenizer. Since there are overlapping tokens between the two tokenizers, we only ended up adding 1,511 new tokens to the original tokenizer. Refer to the <a href="https://github.com/LazarusNLP/NusaBERT/blob/main/scripts/train_nusabert_tokenizer.py">script</a> for more details.</p>
+<h2 id="pre-train-nusabert">Pre-train NusaBERT</h2>
+<p>We modified the Hugging Face 🤗 masked language modeling <a href="https://github.com/huggingface/transformers/blob/main/examples/pytorch/language-modeling/run_mlm.py">pre-training script</a> and conducted continued pre-training of IndoBERT on the dataset detailed above. Running pre-training is as simple as:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python<span class="w"> </span>scripts/run_mlm.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span>--model_name_or_path<span class="w"> </span>indobenchmark/indobert-base-p1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>--tokenizer_name<span class="w"> </span>LazarusNLP/nusabert-base<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span>--max_seq_length<span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span>--per_device_train_batch_size<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span>--per_device_eval_batch_size<span class="w"> </span><span class="m">256</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span>--do_train<span class="w"> </span>--do_eval<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span>--max_steps<span class="w"> </span><span class="m">500000</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span>--warmup_steps<span class="w"> </span><span class="m">24000</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span>--learning_rate<span class="w"> </span>3e-4<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span>--weight_decay<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span>--optim<span class="w"> </span>adamw_torch_fused<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span>--bf16<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span>--preprocessing_num_workers<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span>--dataloader_num_workers<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span>--save_steps<span class="w"> </span><span class="m">10000</span><span class="w"> </span>--save_total_limit<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span>--output_dir<span class="w"> </span>outputs/nusabert-base<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span>--overwrite_output_dir<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span>--report_to<span class="w"> </span>tensorboard<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span>--push_to_hub<span class="w"> </span>--hub_private_repo<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span>--hub_model_id<span class="w"> </span>LazarusNLP/nusabert-base
+</span></code></pre></div>
+<p>We achieved a negative log-likelihood loss of 1.4876 and an accuracy of 68.66% on a heldout subset (5%) of the pre-training corpus.</p>
+<h2 id="fine-tune-nusabert">Fine-tune NusaBERT</h2>
+<p>We developed fine-tuning scripts for NusaBERT based on fine-tuning scripts from Hugging Face 🤗's <a href="https://github.com/huggingface/transformers/tree/main/examples/pytorch">sample fine-tuning scripts</a>.</p>
+<p>In particular, we developed fine-tuning scripts for single-sentence classification, multi-class multi-label classification, token classification, and pair token classification, which you can find in <a href="https://github.com/LazarusNLP/NusaBERT/tree/main/scripts">scripts</a>. These scripts support IndoNLU, NusaX, and NusaWrites datasets.</p>
+<h3 id="single-sentence-classification-task">Single-Sentence Classification Task</h3>
+<p>The tasks included under this category are emotion classification, sentiment analysis, topic classification, etc. To fine-tune for single-sentence classification, run the following command and modify accordingly:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>scripts/run_classification.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span>--model-checkpoint<span class="w"> </span>LazarusNLP/NusaBERT-base<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span>--dataset-name<span class="w"> </span>indonlp/indonlu<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span>--dataset-config<span class="w"> </span>emot<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span>--input-column-names<span class="w"> </span>tweet<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span>--target-column-name<span class="w"> </span>label<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span>--input-max-length<span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span>--output-dir<span class="w"> </span>outputs/nusabert-base-emot<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span>--num-train-epochs<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span>--optim<span class="w"> </span>adamw_torch_fused<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span>--learning-rate<span class="w"> </span>1e-5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span>--weight-decay<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span>--per-device-train-batch-size<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span>--per-device-eval-batch-size<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span>--hub-model-id<span class="w"> </span>LazarusNLP/NusaBERT-base-EmoT
+</span></code></pre></div>
+<p>Single-Sentence Classification recipes are provided <a href="https://github.com/LazarusNLP/NusaBERT/blob/main/run_classification.sh">here</a>.</p>
+<h3 id="multi-label-multi-class-classification">Multi-label Multi-class Classification</h3>
+<p>The task included under this category is aspect-based sentiment analysis (e.g. IndoNLU CASA and HoASA). To fine-tune for multi-label multi-class classification, run the following command and modify accordingly:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python<span class="w"> </span>scripts/run_multi_label_classification.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span>--model-checkpoint<span class="w"> </span>LazarusNLP/NusaBERT-base<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span>--dataset-name<span class="w"> </span>indonlp/indonlu<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span>--dataset-config<span class="w"> </span>casa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span>--input-column-name<span class="w"> </span>sentence<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span>--target-column-names<span class="w"> </span>fuel,machine,others,part,price,service<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span>--input-max-length<span class="w"> </span><span class="m">128</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span>--output-dir<span class="w"> </span>outputs/nusabert-base-casa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span>--num-train-epochs<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span>--optim<span class="w"> </span>adamw_torch_fused<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span>--learning-rate<span class="w"> </span>1e-5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span>--weight-decay<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span>--per-device-train-batch-size<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span>--per-device-eval-batch-size<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span>--hub-model-id<span class="w"> </span>LazarusNLP/NusaBERT-base-CASA
+</span></code></pre></div>
+<p>Multi-label Multi-class Classification recipes are provided <a href="https://github.com/LazarusNLP/NusaBERT/blob/main/run_multi_label_classification.sh">here</a>.</p>
+<h3 id="token-classification">Token Classification</h3>
+<p>Token classification is also known as sequence labeling. The tasks included under this category are part-of-speech tagging (POS), named entity recognition (NER), and token-level span extraction (e.g. IndoNLU TermA, KEPS). To fine-tune for token classification, run the following command and modify accordingly:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>scripts/run_token_classification.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span>--model-checkpoint<span class="w"> </span>LazarusNLP/NusaBERT-base<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span>--dataset-name<span class="w"> </span>indonlp/indonlu<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span>--dataset-config<span class="w"> </span>posp<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span>--input-column-name<span class="w"> </span>tokens<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span>--target-column-name<span class="w"> </span>pos_tags<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span>--output-dir<span class="w"> </span>outputs/nusabert-base-posp<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span>--num-train-epochs<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span>--optim<span class="w"> </span>adamw_torch_fused<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span>--learning-rate<span class="w"> </span>2e-5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span>--weight-decay<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span>--per-device-train-batch-size<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span>--per-device-eval-batch-size<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span>--hub-model-id<span class="w"> </span>LazarusNLP/NusaBERT-base-POSP
+</span></code></pre></div>
+<p>Token Classification recipes are provided <a href="https://github.com/LazarusNLP/NusaBERT/blob/main/run_token_classification.sh">here</a>.</p>
+<h3 id="pair-token-classification">Pair Token Classification</h3>
+<p>Pair token classification is much like token-classification, except involving a pair of input sentences instead of one. The tasks included under this category is token-level question-passage-answering (e.g. IndoNLU FacQA). To fine-tune for pair question-answering, run the following command and modify accordingly:</p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>python<span class="w"> </span>scripts/run_pair_token_classification.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>--model-checkpoint<span class="w"> </span>LazarusNLP/NusaBERT-base<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>--dataset-name<span class="w"> </span>indonlp/indonlu<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span>--dataset-config<span class="w"> </span>facqa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span>--input-column-name-1<span class="w"> </span>question<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span>--input-column-name-2<span class="w"> </span>passage<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span>--target-column-name<span class="w"> </span>seq_label<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span>--output-dir<span class="w"> </span>outputs/nusabert-base-facqa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span>--num-train-epochs<span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span>--optim<span class="w"> </span>adamw_torch_fused<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span>--learning-rate<span class="w"> </span>2e-5<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span>--weight-decay<span class="w"> </span><span class="m">0</span>.01<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span>--per-device-train-batch-size<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span>--per-device-eval-batch-size<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span>--hub-model-id<span class="w"> </span>LazarusNLP/NusaBERT-base-FacQA
+</span></code></pre></div>
+<p>Pair Token Classification recipes are provided <a href="https://github.com/LazarusNLP/NusaBERT/blob/main/run_pair_token_classification.sh">here</a>.</p>
+<h2 id="credits">Credits</h2>
+<p>NusaBERT is developed with love by:</p>
+<div style="display: flex;">
+<a href="https://github.com/anantoj">
+    <img src="https://github.com/anantoj.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;border: solid 0px #fff;margin:0 4px;">
+</a>
+
+<a href="https://github.com/DavidSamuell">
+    <img src="https://github.com/DavidSamuell.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;border: solid 0px #fff;margin:0 4px;">
+</a>
+
+<a href="https://github.com/stevenlimcorn">
+    <img src="https://github.com/stevenlimcorn.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;border: solid 0px #fff;margin:0 4px;">
+</a>
+
+<a href="https://github.com/w11wo">
+    <img src="https://github.com/w11wo.png" alt="GitHub Profile" style="border-radius: 50%;width: 64px;border: solid 0px #fff;margin:0 4px;">
+</a>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

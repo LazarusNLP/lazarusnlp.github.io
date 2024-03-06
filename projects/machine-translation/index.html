@@ -1,0 +1,1330 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Indo-mT5 is mT5 fine-tuned for machine translation of regional languages of Indonesia. We release our dataset creation scripts, training code, and fine-tuned models for other to leverage.">
+      
+      
+      
+        <link rel="canonical" href="https://lazarusnlp.github.io/projects/machine-translation/">
+      
+      
+        <link rel="prev" href="../t5-language-models/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/logo_web.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>Machine Translation - Lazarus NLP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Machine Translation - Lazarus NLP" >
+      
+        <meta  property="og:description"  content="Indo-mT5 is mT5 fine-tuned for machine translation of regional languages of Indonesia. We release our dataset creation scripts, training code, and fine-tuned models for other to leverage." >
+      
+        <meta  property="og:image"  content="https://lazarusnlp.github.io/assets/images/social/projects/machine-translation.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://lazarusnlp.github.io/projects/machine-translation/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Machine Translation - Lazarus NLP" >
+      
+        <meta  name="twitter:description"  content="Indo-mT5 is mT5 fine-tuned for machine translation of regional languages of Indonesia. We release our dataset creation scripts, training code, and fine-tuned models for other to leverage." >
+      
+        <meta  name="twitter:image"  content="https://lazarusnlp.github.io/assets/images/social/projects/machine-translation.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#indo-mt5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Lazarus NLP" class="md-header__button md-logo" aria-label="Lazarus NLP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo_web.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lazarus NLP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Machine Translation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="black"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lazarusnlp/lazarusnlp.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blogs/launch/" class="md-tabs__link">
+          
+  
+  Blogs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../nusabert/" class="md-tabs__link">
+          
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://github.com/LazarusNLP" class="md-tabs__link">
+        
+  
+    
+  
+  GitHub
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://huggingface.co/LazarusNLP" class="md-tabs__link">
+        
+  
+    
+  
+  🤗 Hugging Face
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Lazarus NLP" class="md-nav__button md-logo" aria-label="Lazarus NLP" data-md-component="logo">
+      
+  <img src="../../assets/images/logo_web.png" alt="logo">
+
+    </a>
+    Lazarus NLP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lazarusnlp/lazarusnlp.github.io/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Blogs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blogs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blogs/launch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Launching LazarusNLP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blogs/bible_alignment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bible Alignment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blogs/accents_and_languages/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indonesian Accents and Regional Languages
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Projects
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Projects
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nusabert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NusaBERT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sentence-embeddings/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sentence Embeddings
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../t5-language-models/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Indonesian T5 Language Models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Machine Translation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Machine Translation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#indo-mt5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Indo-mT5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ind-x" class="md-nav__link">
+    <span class="md-ellipsis">
+      ind -&gt; x
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-ind" class="md-nav__link">
+    <span class="md-ellipsis">
+      x -&gt; ind
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parallel-bible-dataset-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parallel Bible Dataset Creation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parallel Bible Dataset Creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bible-scraping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bible Scraping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#align-bible-verses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Align Bible Verses
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-loading-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Loading Script
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://github.com/LazarusNLP" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://huggingface.co/LazarusNLP" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    🤗 Hugging Face
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Machine Translation</h1>
+
+<div class="grid cards">
+<ul>
+<li><a href="https://github.com/LazarusNLP/machine-translation"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg></span> GitHub Repository</a></li>
+<li><a href="https://huggingface.co/collections/LazarusNLP/indot5-6541fbdfa385933e811c2e1f">🤗 HuggingFace Collection</a></li>
+</ul>
+</div>
+<h2 id="indo-mt5">Indo-mT5</h2>
+<p>Indo-mT5 is mT5 fine-tuned for machine translation of regional languages of Indonesia. We release our dataset creation scripts, training code, and fine-tuned models for other to leverage.</p>
+<p>There are two types of models:</p>
+<ul>
+<li><strong>Multilingual</strong>: Many-to-many, multilingual translation model.</li>
+<li><strong>Bilingual</strong>: Unidirectional, bilingual translation model.</li>
+</ul>
+<p>We also further experiment with two settings:</p>
+<ul>
+<li><strong>Baseline</strong>: Model trained on 7 languages (<code>ace</code>, <code>ban</code>, <code>bug</code>, <code>ind</code>, <code>jav</code>, <code>min</code>, <code>sun</code>).</li>
+<li><strong>All</strong>: Model trained on 45 languages as listed <a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/languages.md">here</a>.</li>
+</ul>
+<h2 id="training">Training</h2>
+<p>Our experiments are conducted in these steps:</p>
+<ul>
+<li><strong>Multilingual Training on Bible</strong>: We first fine-tuned mT5 on multilingual translation on parallel Bible dataset, creating Indo-mT5.</li>
+<li><strong>Multilingual Training on NusaX</strong>: We take Indo-mT5 and fine-tune them on multilingual pairs of the NusaX dataset.</li>
+<li><strong>Bilingual Training on NusaX</strong>: We take Indo-mT5 and fine-tune them on bilingual pairs of the NusaX dataset.</li>
+</ul>
+<p>Therefore, we have six training scripts:</p>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Config</th>
+<th>Type</th>
+<th>Training Script</th>
+<th>Evaluation Script</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bible</td>
+<td>Baseline</td>
+<td>Multilingual</td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/train_bible_baseline.sh">train_bible_baseline.sh</a></td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/eval_bible_baseline.sh">eval_bible_baseline.sh</a></td>
+</tr>
+<tr>
+<td>Bible</td>
+<td>All (v2)</td>
+<td>Multilingual</td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/train_bible_all.sh">train_bible_all.sh</a></td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/eval_bible_all.sh">eval_bible_all.sh</a></td>
+</tr>
+<tr>
+<td>NusaX</td>
+<td>Baseline</td>
+<td>Multilingual</td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/train_nusax_baseline_multilingual.sh">train_nusax_baseline_multilingual.sh</a></td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/eval_nusax_baseline_multilingual.sh">eval_nusax_baseline_multilingual.sh</a></td>
+</tr>
+<tr>
+<td>NusaX</td>
+<td>All (v2)</td>
+<td>Multilingual</td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/train_nusax_all_multilingual.sh">train_nusax_all_multilingual.sh</a></td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/eval_nusax_all_multilingual.sh">eval_nusax_all_multilingual.sh</a></td>
+</tr>
+<tr>
+<td>NusaX</td>
+<td>Baseline</td>
+<td>Bilingual</td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/train_nusax_baseline_bilingual.sh">train_nusax_baseline_bilingual.sh</a></td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/eval_nusax_baseline_bilingual.sh">eval_nusax_baseline_bilingual.sh</a></td>
+</tr>
+<tr>
+<td>NusaX</td>
+<td>All (v2)</td>
+<td>Bilingual</td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/train_nusax_all_bilingual.sh">train_nusax_all_bilingual.sh</a></td>
+<td><a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/eval_nusax_all_bilingual.sh">eval_nusax_all_bilingual.sh</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="results">Results</h2>
+<p>We evaluated our models on NusaX (Winata et al., 2022) and compared them to existing models.</p>
+<h3 id="ind-x"><code>ind -&gt; x</code></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>#params</th>
+<th style="text-align: center;"><code>ace</code></th>
+<th style="text-align: center;"><code>ban</code></th>
+<th style="text-align: center;"><code>bbc</code></th>
+<th style="text-align: center;"><code>bjn</code></th>
+<th style="text-align: center;"><code>bug</code></th>
+<th style="text-align: center;"><code>jav</code></th>
+<th style="text-align: center;"><code>mad</code></th>
+<th style="text-align: center;"><code>min</code></th>
+<th style="text-align: center;"><code>nij</code></th>
+<th style="text-align: center;"><code>sun</code></th>
+<th style="text-align: center;">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IndoGPT (Winata et al., 2022)</td>
+<td>117M</td>
+<td style="text-align: center;">9.60</td>
+<td style="text-align: center;">14.17</td>
+<td style="text-align: center;">8.20</td>
+<td style="text-align: center;">22.23</td>
+<td style="text-align: center;">5.18</td>
+<td style="text-align: center;">24.05</td>
+<td style="text-align: center;">14.44</td>
+<td style="text-align: center;">26.95</td>
+<td style="text-align: center;">17.56</td>
+<td style="text-align: center;">23.15</td>
+<td style="text-align: center;">16.55</td>
+</tr>
+<tr>
+<td>IndoBART v2 (Winata et al., 2022)</td>
+<td>132M</td>
+<td style="text-align: center;"><strong>19.21</strong></td>
+<td style="text-align: center;"><strong>27.08</strong></td>
+<td style="text-align: center;"><strong>18.41</strong></td>
+<td style="text-align: center;"><strong>40.03</strong></td>
+<td style="text-align: center;"><strong>11.06</strong></td>
+<td style="text-align: center;"><strong>39.97</strong></td>
+<td style="text-align: center;">28.95</td>
+<td style="text-align: center;">48.48</td>
+<td style="text-align: center;"><strong>27.11</strong></td>
+<td style="text-align: center;"><strong>38.46</strong></td>
+<td style="text-align: center;">29.88</td>
+</tr>
+<tr>
+<td>mBART-50 Large (Winata et al., 2022)</td>
+<td>610M</td>
+<td style="text-align: center;">17.21</td>
+<td style="text-align: center;">22.67</td>
+<td style="text-align: center;">17.79</td>
+<td style="text-align: center;">34.26</td>
+<td style="text-align: center;">10.78</td>
+<td style="text-align: center;">35.33</td>
+<td style="text-align: center;">28.63</td>
+<td style="text-align: center;">43.87</td>
+<td style="text-align: center;">25.91</td>
+<td style="text-align: center;">31.21</td>
+<td style="text-align: center;">26.77</td>
+</tr>
+<tr>
+<td>mT5 Base (Winata et al., 2022)</td>
+<td>580M</td>
+<td style="text-align: center;">14.79</td>
+<td style="text-align: center;">18.07</td>
+<td style="text-align: center;">18.22</td>
+<td style="text-align: center;">38.64</td>
+<td style="text-align: center;">6.68</td>
+<td style="text-align: center;">33.48</td>
+<td style="text-align: center;">0.96</td>
+<td style="text-align: center;">45.84</td>
+<td style="text-align: center;">13.59</td>
+<td style="text-align: center;">33.79</td>
+<td style="text-align: center;">22.41</td>
+</tr>
+<tr>
+<td>NLLB-200 Distilled (zero-shot)</td>
+<td>600M</td>
+<td style="text-align: center;">2.74</td>
+<td style="text-align: center;">4.87</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">1.66</td>
+<td style="text-align: center;">17.66</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">9.79</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">11.92</td>
+<td style="text-align: center;">8.11</td>
+</tr>
+<tr>
+<td>Indo-mT5 NusaX Multilingual</td>
+<td>580M</td>
+<td style="text-align: center;">16.02</td>
+<td style="text-align: center;">22.48</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">8.86</td>
+<td style="text-align: center;">33.65</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">33.65</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">29.76</td>
+<td style="text-align: center;">24.07</td>
+</tr>
+<tr>
+<td>Indo-mT5 NusaX Bilingual</td>
+<td>580M</td>
+<td style="text-align: center;">17.99</td>
+<td style="text-align: center;">27.03</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">10.80</td>
+<td style="text-align: center;">39.63</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;"><strong>51.56</strong></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">35.16</td>
+<td style="text-align: center;"><strong>30.36</strong></td>
+</tr>
+<tr>
+<td>Indo-mT5 v2 NusaX Multilingual</td>
+<td>580M</td>
+<td style="text-align: center;">14.28</td>
+<td style="text-align: center;">19.19</td>
+<td style="text-align: center;">14.86</td>
+<td style="text-align: center;">28.39</td>
+<td style="text-align: center;">8.05</td>
+<td style="text-align: center;">28.70</td>
+<td style="text-align: center;">20.95</td>
+<td style="text-align: center;">32.70</td>
+<td style="text-align: center;">22.30</td>
+<td style="text-align: center;">26.19</td>
+<td style="text-align: center;">21.56</td>
+</tr>
+<tr>
+<td>Indo-mT5 v2 NusaX Bilingual</td>
+<td>580M</td>
+<td style="text-align: center;">17.58</td>
+<td style="text-align: center;">24.24</td>
+<td style="text-align: center;">16.69</td>
+<td style="text-align: center;">38.81</td>
+<td style="text-align: center;">10.20</td>
+<td style="text-align: center;">37.87</td>
+<td style="text-align: center;"><strong>29.77</strong></td>
+<td style="text-align: center;">50.90</td>
+<td style="text-align: center;">26.93</td>
+<td style="text-align: center;">34.22</td>
+<td style="text-align: center;">28.72</td>
+</tr>
+</tbody>
+</table>
+<h3 id="x-ind"><code>x -&gt; ind</code></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>#params</th>
+<th style="text-align: center;"><code>ace</code></th>
+<th style="text-align: center;"><code>ban</code></th>
+<th style="text-align: center;"><code>bbc</code></th>
+<th style="text-align: center;"><code>bjn</code></th>
+<th style="text-align: center;"><code>bug</code></th>
+<th style="text-align: center;"><code>jav</code></th>
+<th style="text-align: center;"><code>mad</code></th>
+<th style="text-align: center;"><code>min</code></th>
+<th style="text-align: center;"><code>nij</code></th>
+<th style="text-align: center;"><code>sun</code></th>
+<th style="text-align: center;">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IndoGPT (Winata et al., 2022)</td>
+<td>117M</td>
+<td style="text-align: center;">7.01</td>
+<td style="text-align: center;">13.23</td>
+<td style="text-align: center;">5.27</td>
+<td style="text-align: center;">19.53</td>
+<td style="text-align: center;">1.98</td>
+<td style="text-align: center;">27.31</td>
+<td style="text-align: center;">13.75</td>
+<td style="text-align: center;">23.03</td>
+<td style="text-align: center;">10.83</td>
+<td style="text-align: center;">23.18</td>
+<td style="text-align: center;">14.51</td>
+</tr>
+<tr>
+<td>IndoBART v2 (Winata et al., 2022)</td>
+<td>132M</td>
+<td style="text-align: center;">24.44</td>
+<td style="text-align: center;">40.49</td>
+<td style="text-align: center;">19.94</td>
+<td style="text-align: center;"><strong>47.81</strong></td>
+<td style="text-align: center;">12.64</td>
+<td style="text-align: center;"><strong>50.64</strong></td>
+<td style="text-align: center;">36.10</td>
+<td style="text-align: center;">58.38</td>
+<td style="text-align: center;"><strong>33.50</strong></td>
+<td style="text-align: center;"><strong>45.96</strong></td>
+<td style="text-align: center;">36.99</td>
+</tr>
+<tr>
+<td>mBART-50 Large (Winata et al., 2022)</td>
+<td>610M</td>
+<td style="text-align: center;">18.45</td>
+<td style="text-align: center;">34.23</td>
+<td style="text-align: center;">17.43</td>
+<td style="text-align: center;">41.73</td>
+<td style="text-align: center;">10.87</td>
+<td style="text-align: center;">39.66</td>
+<td style="text-align: center;">32.11</td>
+<td style="text-align: center;">59.66</td>
+<td style="text-align: center;">29.84</td>
+<td style="text-align: center;">35.19</td>
+<td style="text-align: center;">31.92</td>
+</tr>
+<tr>
+<td>mT5 Base (Winata et al., 2022)</td>
+<td>580M</td>
+<td style="text-align: center;">18.59</td>
+<td style="text-align: center;">21.73</td>
+<td style="text-align: center;">12.85</td>
+<td style="text-align: center;">42.29</td>
+<td style="text-align: center;">2.64</td>
+<td style="text-align: center;">45.22</td>
+<td style="text-align: center;">32.35</td>
+<td style="text-align: center;">58.65</td>
+<td style="text-align: center;">25.61</td>
+<td style="text-align: center;">36.58</td>
+<td style="text-align: center;">29.65</td>
+</tr>
+<tr>
+<td>NLLB-200 Distilled (zero-shot)</td>
+<td>600M</td>
+<td style="text-align: center;">9.42</td>
+<td style="text-align: center;">21.24</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">6.18</td>
+<td style="text-align: center;">30.54</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">40.49</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">26.91</td>
+<td style="text-align: center;">22.46</td>
+</tr>
+<tr>
+<td>Indo-mT5 NusaX Multilingual</td>
+<td>580M</td>
+<td style="text-align: center;">23.94</td>
+<td style="text-align: center;">35.30</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;"><strong>16.68</strong></td>
+<td style="text-align: center;">29.76</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">48.10</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">36.54</td>
+<td style="text-align: center;">31.72</td>
+</tr>
+<tr>
+<td>Indo-mT5 NusaX Bilingual</td>
+<td>580M</td>
+<td style="text-align: center;"><strong>24.78</strong></td>
+<td style="text-align: center;"><strong>42.15</strong></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">16.27</td>
+<td style="text-align: center;">47.26</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;"><strong>62.94</strong></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">42.39</td>
+<td style="text-align: center;"><strong>39.30</strong></td>
+</tr>
+<tr>
+<td>Indo-mT5 v2 NusaX Multilingual</td>
+<td>580M</td>
+<td style="text-align: center;">21.01</td>
+<td style="text-align: center;">30.43</td>
+<td style="text-align: center;">18.57</td>
+<td style="text-align: center;">34.21</td>
+<td style="text-align: center;">14.42</td>
+<td style="text-align: center;">35.19</td>
+<td style="text-align: center;">27.04</td>
+<td style="text-align: center;">42.64</td>
+<td style="text-align: center;">26.90</td>
+<td style="text-align: center;">33.78</td>
+<td style="text-align: center;">28.42</td>
+</tr>
+<tr>
+<td>Indo-mT5 v2 NusaX Bilingual</td>
+<td>580M</td>
+<td style="text-align: center;">22.87</td>
+<td style="text-align: center;">39.48</td>
+<td style="text-align: center;"><strong>20.48</strong></td>
+<td style="text-align: center;">44.53</td>
+<td style="text-align: center;">15.97</td>
+<td style="text-align: center;">45.20</td>
+<td style="text-align: center;"><strong>36.65</strong></td>
+<td style="text-align: center;">60.97</td>
+<td style="text-align: center;">32.38</td>
+<td style="text-align: center;">39.80</td>
+<td style="text-align: center;">35.83</td>
+</tr>
+</tbody>
+</table>
+<h2 id="parallel-bible-dataset-creation">Parallel Bible Dataset Creation</h2>
+<p>This will cover the creation process of our Bible machine-translation dataset.</p>
+<h3 id="overview">Overview</h3>
+<ol>
+<li>Scrape Bible Data</li>
+<li>Align Bible Verses</li>
+<li>Load as Machine-Translation Dataset</li>
+</ol>
+<h3 id="bible-scraping">Bible Scraping</h3>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>utils/scrape_parallel.py<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span>--codes<span class="w"> </span>abun<span class="w"> </span>aceh<span class="w"> </span>ambdr<span class="w"> </span>aralle<span class="w"> </span>balantak<span class="w"> </span>bali<span class="w"> </span>bambam<span class="w"> </span>bauzi<span class="w"> </span>berik<span class="w"> </span>bugis<span class="w"> </span>dairi<span class="w"> </span>duri<span class="w"> </span>ende<span class="w"> </span>galela<span class="w"> </span>gorontalo<span class="w"> </span>iban<span class="w"> </span>jawa<span class="w"> </span>kaili_daa<span class="w"> </span>karo<span class="w"> </span>kupang<span class="w"> </span>lampung<span class="w"> </span>madura<span class="w"> </span>makasar<span class="w"> </span>mamasa<span class="w"> </span>manggarai<span class="w"> </span>mentawai<span class="w"> </span>meyah<span class="w"> </span>minang<span class="w"> </span>mongondow<span class="w"> </span>napu<span class="w"> </span>ngaju<span class="w"> </span>nias<span class="w"> </span>rote<span class="w"> </span>sabu<span class="w"> </span>sangir<span class="w"> </span>sasak<span class="w"> </span>simalungun<span class="w"> </span>sunda<span class="w"> </span>taa<span class="w"> </span>tabaru<span class="w"> </span>tb<span class="w"> </span>toba<span class="w"> </span>toraja<span class="w"> </span>uma<span class="w"> </span>yali<span class="w"> </span>yawa<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span>--outdir<span class="w"> </span>corpus<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span>-j<span class="w"> </span><span class="m">4</span>
+</span></code></pre></div>
+<h3 id="align-bible-verses">Align Bible Verses</h3>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">for</span><span class="w"> </span>LANGUAGE<span class="w"> </span><span class="k">in</span><span class="w"> </span>abun<span class="w"> </span>aceh<span class="w"> </span>ambdr<span class="w"> </span>aralle<span class="w"> </span>balantak<span class="w"> </span>bali<span class="w"> </span>bambam<span class="w"> </span>bauzi<span class="w"> </span>berik<span class="w"> </span>bugis<span class="w"> </span>dairi<span class="w"> </span>duri<span class="w"> </span>ende<span class="w"> </span>galela<span class="w"> </span>gorontalo<span class="w"> </span>iban<span class="w"> </span>jawa<span class="w"> </span>kaili_daa<span class="w"> </span>karo<span class="w"> </span>kupang<span class="w"> </span>lampung<span class="w"> </span>madura<span class="w"> </span>makasar<span class="w"> </span>mamasa<span class="w"> </span>manggarai<span class="w"> </span>mentawai<span class="w"> </span>meyah<span class="w"> </span>minang<span class="w"> </span>mongondow<span class="w"> </span>napu<span class="w"> </span>ngaju<span class="w"> </span>nias<span class="w"> </span>rote<span class="w"> </span>sabu<span class="w"> </span>sangir<span class="w"> </span>sasak<span class="w"> </span>simalungun<span class="w"> </span>sunda<span class="w"> </span>taa<span class="w"> </span>tabaru<span class="w"> </span>tb<span class="w"> </span>toba<span class="w"> </span>toraja<span class="w"> </span>uma<span class="w"> </span>yali<span class="w"> </span>yawa
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">do</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span>python<span class="w"> </span>utils/align.py<span class="w"> </span>--path<span class="w"> </span>corpus/<span class="nv">$LANGUAGE</span>.json<span class="w"> </span>--outdir<span class="w"> </span>corpus_aligned
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">done</span>
+</span></code></pre></div>
+<p>You can read more about aligning Bible verses in <a href="https://lazarusnlp.github.io/blogs/bible_alignment/">our blogpost</a>.</p>
+<h3 id="data-loading-script">Data Loading Script</h3>
+<p>In the data loading script, we have to do these two steps:</p>
+<ol>
+<li>Split unique verse IDs into train/test/validation subsets.</li>
+<li>Generate permutations of every verse ID for every subset.</li>
+</ol>
+<p>You can find our data loading implementation in <a href="https://raw.githubusercontent.com/LazarusNLP/machine-translation/main/src/alkitab-sabda-mt.py">src/alkitab-sabda-mt.py</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+        <script src="../../javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
