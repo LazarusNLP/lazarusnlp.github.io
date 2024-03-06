@@ -36,6 +36,7 @@ nav:
       - Bible Alignment: blogs/bible_alignment.md
       - Indonesian Accents and Regional Languages: blogs/accents_and_languages.md
   - Projects:
+      - NusaBERT: projects/nusabert.md
       - Sentence Embeddings: projects/sentence-embeddings.md
       - Indonesian T5 Language Models: projects/t5-language-models.md
       - Machine Translation: projects/machine-translation.md
